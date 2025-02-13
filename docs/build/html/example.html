@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python/Fortran">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Illustrative examples &mdash; TROVA 1.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="api.html" />
+    <link rel="prev" title="TROVA running" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TROVA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">TROVA: TRansport Of water VApor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Prerequisites and Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">TROVA running</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Illustrative examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#climatological-analysis">Climatological analysis</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TROVA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Illustrative examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="illustrative-examples">
+<h1>Illustrative examples<a class="headerlink" href="#illustrative-examples" title="Permalink to this heading"></a></h1>
+<p>Firstly, the necessary data to be able to carry out tests with TROVA can be downloaded at the link:
+<a class="reference external" href="https://doi.org/10.5281/zenodo.10139577">https://doi.org/10.5281/zenodo.10139577</a>. Once you have downloaded the input data corresponding
+to FLEXPART forced with ERA-Interim, you can use the configuration files and masks available at
+<a class="reference external" href="https://github.com/tramo-ephyslab/TROVA/tree/main/Inputs">https://github.com/tramo-ephyslab/TROVA/tree/main/Inputs</a> and <a class="reference external" href="https://github.com/tramo-ephyslab/TROVA/tree/main/Masks">https://github.com/tramo-ephyslab/TROVA/tree/main/Masks</a>
+respectively.These data are for tests on a certain day and using the methodology of Stohl and James (2005).
+The results for three days (review the configuration files that correspond to a specific day), either to determine moisture sources or sinks
+and analysis of sources by vertical layers are available at <a class="reference external" href="https://github.com/tramo-ephyslab/TROVA/tree/main/output">https://github.com/tramo-ephyslab/TROVA/tree/main/output</a>.
+Check that once TROVA is installed you can reproduce these results.</p>
+<p><em>NOTE: The files available in the zenodo repository are in .gz format, therefore you must verify the file_gz configuration parameter.</em></p>
+<section id="climatological-analysis">
+<h2>Climatological analysis<a class="headerlink" href="#climatological-analysis" title="Permalink to this heading"></a></h2>
+<p><strong>1- TROVA is used in backward in time to determine moisture sources.</strong></p>
+<p>In this case, it is the moisture source pattern associated with the Iberian Peninsula
+for the month of October 2001. In this analysis, TROVA is used with the methodology
+of Sodemann et al. (2008) and as input data the outputs of the FLEXPART-WRF model
+forced with the Community Earth System Model 2 (CESM2) climate model. The mask used
+is represented in red (the Iberian Peninsula itself).</p>
+<a class="reference internal image-reference" href="_images/Fig1-git.jpg"><img alt="Moisture Source" class="align-center" src="_images/Fig1-git.jpg" style="width: 400px;" /></a>
+<p><strong>2- TROVA is used in forward in time to determine the moisture sinks.</strong></p>
+<p>The following Figure presents the moisture sink pattern associated with the Mediterranean
+Sea for the month of October 2014. The methodology of Stohl and James (2005) is considered
+and how it masks the geographical limits of the Mediterranean Sea. The input data for TROVA
+are the outputs of FLEXPART forced with ERA-Interim.</p>
+<a class="reference internal image-reference" href="_images/Fig2-git.png"><img alt="Moisture Sink" class="align-center" src="_images/Fig2-git.png" style="width: 400px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="TROVA running" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, José C. Fernández-Alvarez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

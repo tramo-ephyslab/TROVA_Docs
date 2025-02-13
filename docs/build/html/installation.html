@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python/Fortran">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prerequisites and Installation &mdash; TROVA 1.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TROVA running" href="usage.html" />
+    <link rel="prev" title="TROVA: TRansport Of water VApor" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TROVA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">TROVA: TRansport Of water VApor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites and Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#possible-problems-with-python-packages">Possible problems with python packages:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">TROVA running</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Illustrative examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TROVA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Prerequisites and Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prerequisites-and-installation">
+<h1>Prerequisites and Installation<a class="headerlink" href="#prerequisites-and-installation" title="Permalink to this heading"></a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>To run TROVA, you need:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/downloads/release/python-380/">Python 3.8+</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a></p></li>
+<li><p><a class="reference external" href="https://www.anaconda.com/">Anaconda 3</a></p></li>
+<li><p><a class="reference external" href="https://www.linux.org/">Linux</a></p></li>
+<li><p><a class="reference external" href="https://fortran-lang.org/">Fortran</a></p></li>
+</ul>
+<p>1- Create a python environment with conda, for example:</p>
+<blockquote>
+<div><p>conda create -n py38 python=3.8
+conda activate py38</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>The main Python packages that must be installed are the following (consider using the proposed options):</p></li>
+</ol>
+<ul class="simple">
+<li><p><cite>numpy</cite> (use <cite>conda install numpy</cite>)</p></li>
+<li><p><cite>mpi4py</cite> (use <cite>pip install mpi4py</cite> or <cite>conda install mpi4py</cite>)</p></li>
+<li><p><cite>time</cite> (use <cite>conda install -c conda-forge time</cite>)</p></li>
+<li><p><cite>netCDF4</cite> (use <cite>conda install -c conda-forge netcdf4</cite>)</p></li>
+<li><p><cite>scipy</cite> (use <cite>conda install scipy</cite>)</p></li>
+<li><p><cite>importlib</cite> (use <cite>conda install -c conda-forge importlib</cite>)</p></li>
+<li><p><cite>cartopy</cite> (use <cite>conda install -c conda-forge cartopy</cite>)</p></li>
+<li><p><cite>setuptools</cite> (use <cite>pip install setuptools==58.2.0</cite>)</p></li>
+<li><p><cite>hdf5</cite> (use <cite>pip install hdf5</cite>)</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>1- First option</p>
+<p>You must check that all the packages are installed and that there is no error message when they are imported.</p>
+<ul class="simple">
+<li><p>Clone the repository:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tramo-ephyslab/TROVA-master.git
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Enter the TROVA-master/src/ directory and execute the <em>install_trova.sh</em> code.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>install_trova.sh
+</pre></div>
+</div>
+<p>2- Second option:</p>
+<p>With this option conda will install the necessary TROVA dependencies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>tramo-ephyslab<span class="w"> </span>trova
+</pre></div>
+</div>
+<p>Once installed to check and create the fortran functions the first time it is used, open an ipython and run the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trova</span>
+</pre></div>
+</div>
+<p>NOTE: From now on it must have been installed in the python environment and can be used directly like any library.</p>
+<section id="possible-problems-with-python-packages">
+<h3>Possible problems with python packages:<a class="headerlink" href="#possible-problems-with-python-packages" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>If you have a problem with the mpi4py library, please check that all the necessary executables are in the created environment (e.g. <strong>&quot;libmpi.so.12&quot;</strong>).</p></li>
+</ul>
+<p>If they do not exist, create a symbolic link to the environment you are using (e.g <strong>ln -s /home/jose/WRF/Library/lib/libmpi.so.12 /home/jose/anaconda3/envs/test_env/lib</strong>)</p>
+<ul class="simple">
+<li><p>If there is a problem with netcdf4, do not use <em>conda install -c conda-forge netcdf4</em> but the <em>pip install netcdf4</em> option.</p></li>
+<li><p>If the problem is not resolved, contact the developers: <a class="reference external" href="mailto:jose&#46;carlos&#46;fernandez&#46;alvarez&#37;&#52;&#48;uvigo&#46;es">jose<span>&#46;</span>carlos<span>&#46;</span>fernandez<span>&#46;</span>alvarez<span>&#64;</span>uvigo<span>&#46;</span>es</a> or <a class="reference external" href="mailto:jcfernandez&#37;&#52;&#48;cesga&#46;es">jcfernandez<span>&#64;</span>cesga<span>&#46;</span>es</a>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="TROVA: TRansport Of water VApor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="TROVA running" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, José C. Fernández-Alvarez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

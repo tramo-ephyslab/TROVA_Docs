@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python/Fortran">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TROVA running &mdash; TROVA 1.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Illustrative examples" href="example.html" />
+    <link rel="prev" title="Prerequisites and Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TROVA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">TROVA: TRansport Of water VApor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Prerequisites and Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TROVA running</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-run-trova">How do I run TROVA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-file-details">Input file details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Illustrative examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TROVA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TROVA running</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trova-running">
+<h1>TROVA running<a class="headerlink" href="#trova-running" title="Permalink to this heading"></a></h1>
+<section id="how-do-i-run-trova">
+<h2>How do I run TROVA?<a class="headerlink" href="#how-do-i-run-trova" title="Permalink to this heading"></a></h2>
+<p>To run TROVA version 1.1, create a file with the following code (could be <strong>run_TROVA.py</strong>)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">trova</span> <span class="k">as</span> <span class="nn">tv</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">input_file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tv</span><span class="o">.</span><span class="n">TROVA_main</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once this code is created, TROVA can be used in the following way:</p>
+<p>1- On a Linux computer:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span>num_CPU<span class="w"> </span>python<span class="w"> </span>TROVA.py<span class="w"> </span>input_file_path
+
+e.g:<span class="w">  </span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>TROVA.py<span class="w"> </span>input_back_TC.cfg
+</pre></div>
+</div>
+<p>2- On a HPC with Linux (See  <a class="reference external" href="https://github.com/tramo-ephyslab/TROVA-master/tree/main/run_example_HPC">https://github.com/tramo-ephyslab/TROVA-master/tree/main/run_example_HPC</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --mem=120GB</span>
+<span class="c1">#SBATCH -N 1</span>
+<span class="c1">#SBATCH -n 4</span>
+<span class="c1">#SBATCH -t 00:10:00</span>
+
+module<span class="w"> </span>--purge
+module<span class="w"> </span>load<span class="w"> </span>cesga/2020
+module<span class="w"> </span>load<span class="w"> </span>miniconda3/4.9.2
+conda<span class="w"> </span>activate<span class="w"> </span>envname
+
+srun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>--mpi<span class="o">=</span>pmi2<span class="w"> </span>python<span class="w">  </span>run_TROVA.py<span class="w"> </span>input_file_path<span class="w"> </span>&gt;&gt;<span class="w"> </span>py_<span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span>.log
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>num_CPU: CPU numbers to use (preferably divisible by 4).</p></li>
+<li><p>input_file_path: Input file path for TROVA run.</p></li>
+</ul>
+<p>NOTE: This code is not bug-free. Please report any bugs through 'Issues': <a class="reference external" href="https://github.com/tramo-ephyslab/TROVA-master/issues">https://github.com/tramo-ephyslab/TROVA-master/issues</a></p>
+</section>
+<section id="input-file-details">
+<h2>Input file details<a class="headerlink" href="#input-file-details" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#---------------------</span>
+<span class="c1"># Input data features</span>
+<span class="c1">#---------------------</span>
+
+<span class="c1"># Path to FLEXPART or FLEXPART-WRF partposit binary files [str]</span>
+<span class="nv">path_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/mnt/lustre/hsm/nlsas/notape/home/uvi/fi/tramo/FLEXPART_DATA/&quot;</span>
+
+<span class="c1"># Path for TROVA outputs [str]</span>
+<span class="nv">path_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/mnt/lustre/scratch/nlsas/home/uvi/fi/mst/JoseC/TROVA_NEW/output/&quot;</span>
+
+<span class="c1"># Lagrangian tracking mode: (&#39;backward&#39; / &#39;forward&#39;) [str]</span>
+<span class="nv">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;backward&quot;</span>
+
+<span class="c1"># Atmospheric mass [float]</span>
+<span class="nv">mass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>.148e+18
+
+<span class="c1"># Total number of atmospheric parcels in model simulation [int]</span>
+<span class="nv">numP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1997651</span>
+
+<span class="c1"># Type of file: Set 1 for FELXPART-WRF. Set 2 for FLEXPART older or newer than version 9.  [int]</span>
+<span class="nv">type_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+
+<span class="c1">#--------------------------------------------------------</span>
+<span class="c1"># TROVA output domain configuration and simulation period</span>
+<span class="c1">#--------------------------------------------------------</span>
+
+<span class="c1"># Spatial resolution for TROVA outputs [float]</span>
+<span class="nv">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Number of points in the x-direction for TROVA outputs [int]</span>
+<span class="nv">numPdX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">360</span>
+
+<span class="c1"># Number of points in the y-direction for TROVA outputs [int]</span>
+<span class="nv">numPdY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">180</span>
+
+<span class="c1"># Lower longitude for TROVA output domain [float]</span>
+<span class="nv">x_lower_left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-180
+
+<span class="c1"># Lower latitude for TROVA output domain [float]</span>
+<span class="nv">y_lower_left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-90
+
+<span class="c1"># Time step for parcel tracking (minutes) [int]</span>
+<span class="nv">dtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">360</span>
+
+<span class="c1"># Total time for parcel tracking (minutes) [int]</span>
+<span class="nv">totaltime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14400</span>
+
+<span class="c1"># Start date for tracking [int]</span>
+<span class="nv">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2014</span>
+<span class="nv">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="nv">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">17</span>
+<span class="nv">hour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">00</span>
+<span class="nv">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">00</span>
+
+<span class="c1"># Number of days to perform parcel tracking from start day [int]</span>
+<span class="nv">ndays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1">#------------------</span>
+<span class="c1"># Mask data</span>
+<span class="c1">#------------------</span>
+
+<span class="c1"># path to mask file (netcdf)</span>
+<span class="nv">file_mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/mnt/lustre/scratch/nlsas/home/uvi/fi/mst/JoseC/TROVA_NEW/Masks/CAN.nc&quot;</span>
+
+<span class="c1"># Mask name variable in the mask file [str]</span>
+<span class="nv">maskname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mask&quot;</span>
+
+<span class="c1"># Latitude variable name in the mask file [str]</span>
+<span class="nv">maskvar_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lat&quot;</span>
+
+<span class="c1"># Longitude variable name in the mask file [str]</span>
+<span class="nv">maskvar_lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lon&quot;</span>
+
+<span class="c1"># Mask value for filtering parcels [int]</span>
+<span class="nv">mask_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1">#-----------------------------------</span>
+<span class="c1"># Configuration for particle tracking</span>
+<span class="c1">#-----------------------------------</span>
+
+<span class="c1"># Subdomain limits for regional models [float]</span>
+<span class="c1"># x_left_lower_corner: longitude min, y_left_lower_corner: latitude min, x_right_upper_corner: longitude max, y_right_upper_corner: latitude max</span>
+<span class="nv">x_left_lower_corner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-180.0
+<span class="nv">y_left_lower_corner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-90.0
+<span class="nv">x_right_upper_corner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">180</span>
+<span class="nv">y_right_upper_corner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span>.0
+
+<span class="c1"># Model type: [&#39;FLEXPART&#39; / &#39;FLEXPART-WRF&#39;] [str]</span>
+<span class="nv">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;FLEXPART&quot;</span>
+
+<span class="c1"># Set method = 1 for Stohl and James (2005). Set method = 2 for Sodemann et al. (2008) [int]</span>
+<span class="nv">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># To filter precipitating parcels [&quot;True&quot; / &quot;False&quot;]  [str]</span>
+<span class="nv">filter_parcels_dqdt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1"># Threshold for filtering precipitating parcels [float]. It is only necessary if filter_parcels_dqdt = True.</span>
+<span class="nv">dqdt_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.0001
+
+<span class="c1"># To filter parcels by height [&quot;True&quot; / &quot;False&quot;]  [str]</span>
+<span class="nv">filter_parcels_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1"># Vertical layer for filtering parcels by height [lower_layer, upper_layer] [meters]. It is only necessary if filter_parcels_height = True.</span>
+<span class="nv">filter_vertical_layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">25000</span><span class="o">]</span>
+
+<span class="c1"># To compute the moisture uptake in vertical layers [&quot;True&quot; / &quot;False&quot;]  [str]</span>
+<span class="nv">use_vertical_layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Vertical layers to compute moisture uptake</span>
+<span class="nv">vertical_layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">750</span>,<span class="w"> </span><span class="m">1500</span>,<span class="w"> </span><span class="m">2250</span>,<span class="w"> </span><span class="m">3000</span>,<span class="w"> </span><span class="m">4000</span>,<span class="w"> </span><span class="m">6000</span>,<span class="w"> </span><span class="m">9000</span>,<span class="w"> </span><span class="m">12000</span>,<span class="w"> </span><span class="m">15000</span>,<span class="w"> </span><span class="m">20000</span><span class="o">]</span>
+
+<span class="c1">#File output format. Set 1 to activate output format and 0 to deactivate [int]</span>
+<span class="nv">output_txt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">output_npy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">output_nc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1">#-----------------</span>
+<span class="c1"># Other parameters</span>
+<span class="c1">#-----------------</span>
+
+<span class="c1">#Target region name [str]</span>
+<span class="nv">name_target_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CAN&quot;</span>
+
+<span class="c1">#Set file_gz=1 if partposit files are compressed in gz format, else file_gz=0 [int]</span>
+<span class="nv">file_gz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1">#---------------</span>
+<span class="c1">#Auxiliar tools</span>
+<span class="c1">#---------------</span>
+
+<span class="c1">#To save particle positions for each time step [str]</span>
+<span class="nv">save_position_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#To save dqdt positions for each dt [str]</span>
+<span class="nv">save_position_dqdt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Plotting identified parcels within the target region at time t0 (year_month_day_hour_min) [True /  False] [str]</span>
+<span class="nv">plotting_parcels_t0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Ploting identified parcels trajectories on a map [True /  False] [str]</span>
+<span class="nv">plotting_parcels_tracks_on_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Map limits for plotting [latmin, lonmin, latmax, lonmax, mapcenter, dlat, dlon] [float]</span>
+<span class="c1">#map center must be 0 or 180. If center=180, provide lonmin and lonmax in 0-360 format</span>
+<span class="nv">maps_limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span>-110,<span class="w"> </span><span class="m">75</span>,<span class="w"> </span><span class="m">15</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">25</span><span class="o">]</span>
+
+<span class="c1">#Plotting 3D parcels trajectories [True /  False]</span>
+<span class="nv">plotting_3Dparcels_tracks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Calendar leap/noleap [&quot;True&quot; / &quot;False&quot;] [only when certain simulations do not use leap calendar] [str]</span>
+<span class="nv">noleap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+
+<span class="c1">#Parameter to limit the particles to the domain limits. Consider only in regional models [&quot;True&quot; / &quot;False&quot;]  [str]</span>
+<span class="nv">limit_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>False
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Prerequisites and Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example.html" class="btn btn-neutral float-right" title="Illustrative examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, José C. Fernández-Alvarez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
