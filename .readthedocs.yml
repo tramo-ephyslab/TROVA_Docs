@@ -5,6 +5,4 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.9"
-python:
-  install:
-    - requirements: requirements.txt  # Si tienes un archivo requirements.txt
+
