@@ -76,6 +76,7 @@ Possible problems with python packages:
 If they do not exist, create a symbolic link to the environment you are using (e.g **ln -s /home/jose/WRF/Library/lib/libmpi.so.12 /home/jose/anaconda3/envs/test_env/lib**)
 
 - If there is a problem with netcdf4, do not use *conda install -c conda-forge netcdf4* but the *pip install netcdf4* option.
+
 - If the problem is not resolved, contact the developers: jose.carlos.fernandez.alvarez@uvigo.es or jcfernandez@cesga.es.
 
 
