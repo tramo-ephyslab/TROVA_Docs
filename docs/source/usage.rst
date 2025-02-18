@@ -45,10 +45,23 @@ Once this code is created, TROVA can be used in the following way:
 - num_CPU: CPU numbers to use (preferably divisible by 4).
 - input_file_path: Input file path for TROVA run.
 
+Below is an image of what a run with TROVA would look like, from when it initializes 
+showing information about the input data, mask, etc. used, such as the time it takes 
+to process the number of files or particles.
+
+
+.. image:: _static/run_trova.png
+   :alt: run trova
+   :align: center
+   :width: 400px
+
 NOTE: This code is not bug-free. Please report any bugs through 'Issues': https://github.com/tramo-ephyslab/TROVA-master/issues
 
 Input file details
 ------------------
+
+Below are the parameters of the TROVA configuration file. This is just an example, 
+so the user should modify it based on the input data.
 
 .. code-block:: bash
 
