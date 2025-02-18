@@ -13,5 +13,5 @@ Welcome to TROVA's documentation!
    introduction
    installation
    usage
+   example_climate
    example
-   api
