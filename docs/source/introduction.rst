@@ -4,7 +4,7 @@ TROVA: TRansport Of water VApor
 TRansport Of water VApor (TROVA) is a software developed in Python and Fortran
 for the study of moisture sources and sinks. It has been developed within the LAGRIMA and 
 SETESTRELO projects at the EPhysLab (Environmental Physics Laboratory) at the University of Vigo. 
-Subsequently, its development and updating has continued within a collaboration from the University 
+Subsequently, its development and updating have continued within a collaboration between the University 
 of Vigo and the Galician Supercomputing Center. Many investigations use this software to obtain scientific results. 
 These can be consulted at the following web address: `EPhysLab Website <https://ephyslab.uvigo.es/en/staff/>`_. 
 **This is an update of the software presented by Fernández-Alvarez et al. (2022)**
@@ -39,11 +39,11 @@ TROVA Software architecture
 
 
 TROVA allows the use of the FLEXible PARTicle global dispersion model and the FLEXPART-WRF 
-regional model at different spatial resolutions. It also include the methodologies 
+regional model at different spatial resolutions. It also includes the methodologies 
 of Stohl and James (2005) and Sodemann et al. (2008). We herein refer to these methodologies
 as STHOL2005 and SOD2008 respectively. It contains two main modules:
 
-1- Developed in Python that is responsible for reading the files, configuring TROVA
+1- Developed in Python that is responsible for reading the files, configuring TROVA,
 and generating the outputs of the moisture budget *(Evaporation (E)-Precipitation (P))* 
 for the number of days selected in the simulations.
 
@@ -64,7 +64,6 @@ computational efficiency and decrease the run time. The fourth step is calculati
 on the output mesh defined by the user from the Stohl and James (2005) equation. Finally, TROVA 
 saves the output in the user-defined format, which can be NetCDF, ASCII, or any.
 
-
 .. image:: _static/Flowchart.png
    :alt: TROVA Flowchart
    :align: center
@@ -73,10 +72,10 @@ saves the output in the user-defined format, which can be NetCDF, ASCII, or any.
 TROVA software functionalities  
 --------------------------------
 
-TROVA allows the study of moisture sources and sinks based on calculation of the E-P fields, 
+TROVA allows the study of moisture sources and sinks based on the calculation of the E-P fields, 
 using the main methodologies of Stohl and James (2005) and Sodemann et al. [2008]. In addition, TROVA 
 provides the advantage of using different numerical outputs from FLEXPART and FLEXPART-WRF at 
-different spatial resolutions, ensuring better representation of the E-P field to be obtained. 
+different spatial resolutions, ensuring a better representation of the E-P field to be obtained. 
 Table 1 shows a comparison of TROVA with other software available to the scientific community: 
 WaterSip (Fremme and Sodemann, 2019) and HAMSTER (Keune et al., 2022), in which the main 
 differences/advantages can be observed. For more details, consult the article: Fernández-Alvarez et al. (2022).
@@ -112,20 +111,22 @@ differences/advantages can be observed. For more details, consult the article: F
 
 TROVA software validation
 ----------------------------------------
-The TROVA software has been widely validated in the analysis of moisture sources from tropical and 
-extratropical cyclones and atmospheric rivers for the North Atlantic basin using the methodologies 
-mentioned above, sometimes for future climate. In these studies, the outputs of FLEXPART forced with 
-ERA-Interim, ERA5, and climate scenarios were used as input data. In addition, it was evaluated using 
-the methodology of Stohl and James [4] for climatological studies of the moisture sources contributing
-to the Iberian Peninsula and for sinks associated with the sources in the North Atlantic Ocean and the 
-Mediterranean Sea. These results can be consulted in Fernandez-Alvarez et al. (2023).
 
+TROVA software has been widely validated in the analysis of moisture sources originating from tropical 
+(Pérez-Alarcón et al., 2022a,b) and extratropical cyclones (Coll-Hidalgo et al., 2024a,b) and Atmospheric Rivers 
+(Fernández‐Alvarez et al., 2022; Eiras‐Barca et al., 2025) and Low-level jets (Eiras‐Barca et al., 2025) for the 
+North Atlantic basin using Lagrangian methodologies such as Sthol and James (2005) and Sodemann et al. (2008).
+In these studies, outputs from FLEXPART or FLEXPART-WRF forced with ERA-Interim, ERA5, and climate scenarios (CMIP6 data) 
+were used. In addition, it was evaluated using the methodology of Stohl and James (2005) for climatological studies of 
+moisture sources contributing to the Iberian Peninsula and for moisture sinks associated with the sources in the North 
+Atlantic Ocean and the Mediterranean Sea. These results can be consulted in Fernandez-Alvarez et al. (2023). 
+Currently, it is being used in many research studies that are under review.
 
 TROVA impact
 ----------------------------------------
 
 The moisture transport from ocean sources to the continents forms the link between evaporation from the ocean
-and precipitation over the continents, thus establishing the moisture source–sink relationship. In the 
+and precipitation over the continents, thus establishing the moisture source-sink relationship. In the 
 context of climate change, a change in moisture transport is associated with the moisture increase derived 
 from the increment of temperature. Therefore, the study of moisture transport is crucial for a better
 understanding of the observed changes and those derived from projections of future climate data. 
@@ -158,3 +159,25 @@ in the Yangtze River valley. Hydrol. Earth Syst. Sci. 2019; 23:2525-2540.https:/
 [6] Fernández-Alvarez, J.C., Pérez-Alarcón, A., Eiras-Barca, J. et al. Projected changes in atmospheric moisture 
 transport contributions associated with climate warming in the North Atlantic. Nat Commun 14, 6476 (2023). 
 https://doi.org/10.1038/s41467-023-41915-1
+
+[7] Pérez‐Alarcón A, Coll‐Hidalgo P, Fernández‐Alvarez JC, Sorí R, Nieto R, Gimeno L. Moisture sources for precipitation
+associated with major hurricanes during 2017 in the North Atlantic basin. J. Geophys. Res.-Atmos. 2022; 127:e2021JD035554.
+https://doi.org/10.1029/2021JD035554.
+
+[8] Pérez-Alarcón A, Sorí R, Fernández-Alvarez JC, Nieto R, Gimeno L Where does the moisture for North Atlantic tropical 
+cyclones come from?. J. Hydrometeorol. 2022, 23:457–472. https://doi.org/10.1175/JHM-D-21-0117.1.
+
+[9] Coll-Hidalgo, P., Gimeno-Sotelo, L., Fernández-Alvarez, J.C. et al. North Atlantic Extratropical Cyclone Tracks and 
+Lagrangian-Derived Moisture Uptake Dataset. Sci Data 11, 1258 (2024). https://doi.org/10.1038/s41597-024-04091-5.
+
+[10] Coll-Hidalgo, P., Gimeno-Sotelo, L., Fernández-Alvarez, J. C., Nieto, R., & Gimeno, L. (2024). North Atlantic 
+Extratropical Cyclone Tracks and Lagrangian-Derived Moisture Uptake Dataset. Scientific Data, 11(1), 1258. 
+https://doi.org/10.1016/j.atmosres.2024.107628.
+
+[11] Fernández‐Alvarez, J. C., Pérez‐Alarcón, A., Eiras‐Barca, J., Ramos, A. M., Rahimi‐Esfarjani, S., Nieto, R., & Gimeno, L. 
+(2023). Changes in Moisture Sources of Atmospheric Rivers Landfalling the Iberian Peninsula With WRF‐FLEXPART. Journal of 
+Geophysical Research: Atmospheres, 128(8), e2022JD037612. https://doi.org/10.1029/2022JD037612.
+
+[12] Eiras‐Barca, J., Fernández‐Alvarez, J. C., Alvarez‐Socorro, G., Rahimi‐Esfarjani, S., Carrasco‐Pena, P., Nieto, R., & 
+Gimeno, L. (2025). Projected changes in moisture sources and sinks affecting the US East Coast and the Caribbean Sea. Annals
+of the New York Academy of Sciences. https://doi.org/10.1111/nyas.15289.
