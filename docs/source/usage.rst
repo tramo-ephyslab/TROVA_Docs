@@ -219,3 +219,4 @@ so the user should modify it based on the input data.
 
    #Parameter to limit the particles to the domain limits. Consider only in regional models ["True" / "False"]  [str] 
    limit_domain = False
+
