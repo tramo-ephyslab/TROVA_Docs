@@ -15,3 +15,7 @@ Welcome to TROVA's documentation!
    usage
    example_climate
    example
+   support
+   license
+   citation
+   trova
