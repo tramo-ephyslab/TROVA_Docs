@@ -1,45 +1,23 @@
-trova package
-=============
 
-Submodules
-----------
+API reference
+-------------
 
-trova.functions module
-----------------------
+.. module:: trova
 
-.. automodule:: trova.functions
-   :members:
-   :undoc-members:
-   :show-inheritance:
+#texto de informacion de trova.py
 
-trova.functions\_python module
-------------------------------
+.. function:: Kdif_python(matrix1, matrix2, paso)
 
-.. automodule:: trova.functions_python
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   Computes the difference between two matrices based on a given step.
 
-trova.tensor\_operations module
--------------------------------
+   **Parameters** 
 
-.. automodule:: trova.tensor_operations
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   - **matrix1** (*numpy.ndarray*): The first input matrix.
 
-trova.trova module
-------------------
+   - **matrix2** (*numpy.ndarray*): The second input matrix.
 
-.. automodule:: trova.trova
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   - **paso** (*float*): The step value, can be either -1.0 or 1.0.  
 
-Module contents
----------------
+   **Returns**
 
-.. automodule:: trova
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   - *numpy.ndarray*: The output matrix with computed differences and selected values from the input matrices.  

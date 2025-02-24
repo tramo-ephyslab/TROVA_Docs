@@ -65,6 +65,24 @@ so the user should modify it based on the input data.
 
 .. code-block:: bash
 
+    *****************************************************************************************
+    *                    EPhysLab (Environmental Physics Laboratory)                        *
+    *                        Galician Supercomputing Center, Spain                          *
+    *                        TRansport Of water VApor (TROVA)                               *
+    *                             version 1.1.1 (12-02-2025)                                *
+    *                        _____ __    ____                                               *
+    *                          |  |  |  /    \ \        //\                                 *
+    *                          |  |__| /      \ \      //__\                                *
+    *                          |  |  \ \      /  \    //    \                               *
+    *                          |  |   \ \____/    \__//      \                              *
+    *                                                                                       *
+    *                             Edificio Campus da Auga                                   *
+    *                             University of Vigo/CESGA                                  *
+    *                          www.ephyslab.uvigo.es/www.cesga.es                           *
+    *      contact: jose.carlos.fernandez.alvarez@uvigo.es (jcfernandez@cesga.es),          * 
+    *                         albenis.perez.alarcon@uvigo.es                                *
+    *****************************************************************************************
+
    #---------------------
    # Input data features
    #---------------------
@@ -219,4 +237,5 @@ so the user should modify it based on the input data.
 
    #Parameter to limit the particles to the domain limits. Consider only in regional models ["True" / "False"]  [str] 
    limit_domain = False
+
 

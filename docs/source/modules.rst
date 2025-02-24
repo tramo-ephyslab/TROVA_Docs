@@ -1,7 +1,13 @@
-trova
-=====
+modules.rst
+===========
 
-.. toctree::
-   :maxdepth: 4
+.. automodule:: trova
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-   trova
+Kdif_python function
+--------------------
+
+.. autofunction:: trova.Kdif_python
+
