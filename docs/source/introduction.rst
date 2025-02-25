@@ -12,18 +12,18 @@ These can be consulted at the following web address: `EPhysLab Website <https://
 .. code-block:: none
 
     *****************************************************************************************
-    *                    EPhysLab (Environmental Physics Laboratory)                        *
+    *                    EPhysLab (Environmental Physics Laboratory), Spain                 *
     *                        Galician Supercomputing Center, Spain                          *
     *                        TRansport Of water VApor (TROVA)                               *
-    *                             version 1.1.1 (12-02-2025)                                *
+    *                             version 1.1.1 (15-02-2025)                                *
     *                        _____ __    ____                                               *
     *                          |  |  |  /    \ \        //\                                 *
     *                          |  |__| /      \ \      //__\                                *
     *                          |  |  \ \      /  \    //    \                               *
     *                          |  |   \ \____/    \__//      \                              *
     *                                                                                       *
-    *                             Edificio Campus da Auga                                   *
-    *                             University of Vigo/CESGA                                  *
+    *                        Edificio Campus da Auga/Edificio CESGA                         *
+    *                            University of Vigo/CESGA                                   *
     *                          www.ephyslab.uvigo.es/www.cesga.es                           *
     *      contact: jose.carlos.fernandez.alvarez@uvigo.es (jcfernandez@cesga.es),          * 
     *                         albenis.perez.alarcon@uvigo.es                                *
