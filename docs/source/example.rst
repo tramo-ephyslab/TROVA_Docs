@@ -2,7 +2,7 @@
 Illustrative examples for a specific day
 ===============================================================
 Using the data corresponding to the outputs of FLEXPART-WRF forced with ERA5 
-and the TROVA configuration file provided in the following repository 
+and the TROVA configuration file provided in the following repositories
 https://zenodo.org/records/14886887 and https://zenodo.org/records/14939160,
 the results shown below for October 17, 2014, can be reproduced. For this 
 analysis, the Canary Islands are considered as the target region (magenta 
