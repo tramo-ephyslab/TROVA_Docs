@@ -13,7 +13,7 @@ repository https://zenodo.org/records/14886887.
 Below we show a detailed analysis of the results obtained when we ran TROVA
 using the methodology of Sodemann et al (2008). This analysis is performed 
 for a sample of 1000 particles. For this analysis, we used the files
-20141017000000_dqdt_back.nc and 20141017000000_back.ncWe present four
+20141017000000_dqdt_back.nc and 20141017000000_back.nc. We present four
 figures with the following variables:
 
 
