@@ -19,3 +19,4 @@ Welcome to TROVA's documentation!
    license
    citation
    trova
+   release
