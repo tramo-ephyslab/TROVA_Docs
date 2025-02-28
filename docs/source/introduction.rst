@@ -188,5 +188,6 @@ Geophysical Research: Atmospheres, 128(8), e2022JD037612. https://doi.org/10.102
 [12] Eiras‐Barca, J., Fernández‐Alvarez, J. C., Alvarez‐Socorro, G., Rahimi‐Esfarjani, S., Carrasco‐Pena, P., Nieto, R., & 
 Gimeno, L. (2025). Projected changes in moisture sources and sinks affecting the US East Coast and the Caribbean Sea. Annals
 of the New York Academy of Sciences. https://doi.org/10.1111/nyas.15289.
+
 [13] Läderach, A., & Sodemann, H. (2016). A revised picture of the atmospheric moisture residence time. Geophysical Research 
 Letters, 43(2), 924-933.
