@@ -43,15 +43,22 @@ regional model at different spatial resolutions. It also includes the methodolog
 of Stohl and James (2005) and Sodemann et al. (2008). We herein refer to these methodologies
 as STHOL2005 and SOD2008 respectively. It contains two main modules:
 
-1- Developed in Python that is responsible for reading the files, configuring TROVA,
-and generating the outputs of the moisture budget *(Evaporation (E)-Precipitation (P))* 
-for the number of days selected in the simulations.
+1- **Developed in Python, responsible for reading files, configuring TROVA, and generating 
+the outputs of the moisture balance (Evaporation (E)-Precipitation (P)) for the number 
+of days selected in the simulations.**
 
-2- Developed in Fortran that is used in interface with Python so that the calculations 
-of great computational demand are carried out in the shortest possible time. It also 
-includes a parallel implementation using the MPI library to reduce TROVA processing time.
+2- **Developed in Fortran, used in interface with Python to perform computationally 
+demanding calculations in the shortest possible time. It also includes a parallel 
+implementation using the MPI library to reduce TROVA's processing time.**
 
-3- This new version includes the analysis of moisture sources and sinks by vertical layers.
+3- **This new version includes the analysis of moisture sources and sinks by vertical layers.**
+
+4- **This version allows the calculation of the residence time of water vapor in the 
+atmosphere for particles in a target region.**
+
+5- **This version has functions that allow the representation of moisture source and sink patterns and 
+the representation in a 2D graph of the residence time values of water vapor in the atmosphere 
+for particles in a target region.**
 
 For a more detailed understanding of TROVA, Figure 1 presents a flowchart where the general 
 algorithm of the software is explained. The first step that must be carried out corresponds 
@@ -181,3 +188,5 @@ Geophysical Research: Atmospheres, 128(8), e2022JD037612. https://doi.org/10.102
 [12] Eiras‐Barca, J., Fernández‐Alvarez, J. C., Alvarez‐Socorro, G., Rahimi‐Esfarjani, S., Carrasco‐Pena, P., Nieto, R., & 
 Gimeno, L. (2025). Projected changes in moisture sources and sinks affecting the US East Coast and the Caribbean Sea. Annals
 of the New York Academy of Sciences. https://doi.org/10.1111/nyas.15289.
+[13] Läderach, A., & Sodemann, H. (2016). A revised picture of the atmospheric moisture residence time. Geophysical Research 
+Letters, 43(2), 924-933.

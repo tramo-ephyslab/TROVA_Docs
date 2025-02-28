@@ -6,6 +6,13 @@ TROVA module 1
 
 .. module:: trova
 
+   :platform: Linux
+   :synopsis: TROVA module 1
+   :moduleauthor: José Carlos Fernández Alvarez <jcfernandez@cesga.es>
+   :version: 1.0
+   :deprecated: No
+   :private: No
+
 Below is the description of the functions within the main TROVA module, 
 specifically in the *trova.py* script.
 
@@ -281,6 +288,33 @@ specifically in the *trova.py* script.
 
    - *None*
 
+.. function:: plot_moisture_sink_source(lon, lat, data, paso, path_output, folder, limit_plot)
+    
+    Plots the moisture sink and source patterns on a map.
+
+    This function creates a 2D map plot of moisture sink and source patterns using the provided
+    longitude, latitude, and data arrays. The plot is saved to a specified output path.
+
+    **Parameters**
+
+    - **lon** (*numpy.ndarray*): Array containing the longitude values.
+
+    - **lat** (*numpy.ndarray*): Array containing the latitude values.
+
+    - **data** (*numpy.ndarray*): Array containing the moisture sink/source data.
+
+    - **paso** (*int*): Step value indicating the direction of the plot (-1 for backward, 1 for forward).
+
+    - **path_output** (*str*): Path to save the output plot.
+
+    - **folder** (*str*): Folder name to save the plot within the output path.
+    
+    - **limit_plot** (*list*): List containing the plot limits [latmin, lonmin, latmax, lonmax].
+
+    **Returns**
+
+    - *None*
+   
 .. function:: generate_fecha_simulation(ndias, cyear, cmonth, cday, chours, cminutes)
 
    Generates a list of simulation dates.
@@ -691,73 +725,123 @@ specifically in the *trova.py* script.
 
    - *tuple*: A tuple containing the filtered tensor, tensor_por, idPart, and qIni arrays.
 
-.. function:: _backward_dq(lista_partposi, file_mask, name_mascara, name_variable_lon, name_variable_lat, lat_f, lon_f, rank, size, comm, type_file, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, value_mask, key_gz, path_output, use_vertical_layers, vertical_layers, filter_parcels_height, filter_vertical_layers, limit_domain, dates)
+.. function:: plot_residence_time(residence_time_particles, residence_time_mean, output_dir, date, rank)
 
-   Processes backward parcel tracking data.
+    Plot residence time for all particles and display the mean value in the title.
 
-   This function processes backward parcel tracking data, filters the data based on specified criteria, and returns the results.
+    **Parameters**
 
-   **Parameters**
-
-   - **lista_partposi** (*list*): List of file paths to read.
-
-   - **file_mask** (*str*): Path to the mask file.
-
-   - **name_mascara** (*str*): Name of the mask variable.
-
-   - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
-
-   - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
-
-   - **lat_f** (*numpy.ndarray*): Array of latitude values.
-
-   - **lon_f** (*numpy.ndarray*): Array of longitude values.
-
-   - **rank** (*int*): Rank of the current MPI process.
-
-   - **size** (*int*): Total number of MPI processes.
-
-   - **comm** (*MPI.Comm*): MPI communicator.
-
-   - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
-
-   - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
-
-   - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
-
-   - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
-
-   - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
-
-   - **model** (*str*): Model type (e.g., "FLEXPART").
-
-   - **method** (*int*): Method used for processing.
-
-   - **threshold** (*float*): Threshold value for filtering.
-
-   - **filter_value** (*int*): Value used for filtering.
-
-   - **value_mask** (*int*): Value to search for in the mask array.
-
-   - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
-
-   - **path_output** (*str*): Path to save the output files.
-
-   - **use_vertical_layers** (*bool*): Whether to use vertical layers.
-
-   - **vertical_layers** (*list*): List of vertical layers.
-
-   - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
-
-   - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
-
-   - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
-
-   - **dates** (*list*): List of dates for the simulation.
+    - **residence_time_particles** (*numpy.ndarray*): Array of residence times for each particle.
+    
+    - **residence_time_mean** (*float*): Mean residence time.
+    
+    - **output_dir** (*str*): Directory where the plot will be saved.
+    
+    - **date** (*str*): Date string for output file naming.
 
    **Returns**
+    
+    - *None*
 
-   - *tuple*: A tuple containing the processed data and additional information.
+.. function:: compute_residence_time_and_save(dqdt, output_dir, date, dtime, totaltime, folder, rank)
+
+    Compute water vapor residence time from a dq/dt tensor and save results to a NetCDF file.
+
+     **Parameters**
+
+    - **dqdt** (*numpy.ndarray*): dq/dt tensor.
+
+    - **output_dir** (*str*): Directory where the output NetCDF file will be saved.
+    
+    - **date** (*str*): Date string for output file naming.
+    
+    - **dtime** (*int*): Time step interval in minutes.
+    
+    - **totaltime** (*int*): Total time in minutes.
+    
+    - **folder** (*str*): Folder name to save the output file within the output directory.
+    
+    - **rank** (*int*): Rank of the current MPI process.
+
+     **Returns**
+
+    - *None*
+
+.. function:: _backward_dq(lista_partposi, file_mask, name_mascara, name_variable_lon, name_variable_lat, lat_f, lon_f, rank, size, comm, type_file, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, value_mask, key_gz, path_output, use_vertical_layers, vertical_layers, filter_parcels_height, filter_vertical_layers, limit_domain, dates, dtime, totaltime, folder, method_wvrt)
+
+    Processes backward parcel tracking data.
+
+    This function processes backward parcel tracking data, filters the data based on specified criteria, and returns the results.
+
+    **Parameters**
+
+    - **lista_partposi** (*list*): List of file paths to read.
+
+    - **file_mask** (*str*): Path to the mask file.
+
+    - **name_mascara** (*str*): Name of the mask variable.
+
+    - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
+    
+    - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
+    
+    - **lat_f** (*numpy.ndarray*): Array of latitude values.
+    
+    - **lon_f** (*numpy.ndarray*): Array of longitude values.
+    
+    - **rank** (*int*): Rank of the current MPI process.
+    
+    - **size** (*int*): Total number of MPI processes.
+    
+    - **comm** (*MPI.Comm*): MPI communicator.
+    
+    - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+    
+    - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
+    
+    - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
+    
+    - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
+    
+    - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
+    
+    - **model** (*str*): Model type (e.g., "FLEXPART").
+    
+    - **method** (*int*): Method used for processing.
+    
+    - **threshold** (*float*): Threshold value for filtering.
+    
+    - **filter_value** (*int*): Value used for filtering.
+    
+    - **value_mask** (*int*): Value to search for in the mask array.
+    
+    - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
+    
+    - **path_output** (*str*): Path to save the output files.
+    
+    - **use_vertical_layers** (*bool*): Whether to use vertical layers.
+    
+    - **vertical_layers** (*list*): List of vertical layers.
+    
+    - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
+    
+    - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
+    
+    - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
+    
+    - **dates** (*list*): List of dates for the simulation.
+    
+    - **dtime** (*int*): Time step interval in minutes.
+    
+    - **totaltime** (*int*): Total time in minutes.
+    
+    - **folder** (*str*): Folder name to save the output file within the output directory.
+    
+    - **method_wvrt** (*int*): Method used for calculating water vapor residence time.
+
+    **Returns**
+
+    - *tuple*: A tuple containing the processed data and additional information.
 
 .. function:: _forward_dq(lista_partposi, file_mask, name_mascara, name_variable_lon, name_variable_lat, lat_f, lon_f, rank, size, comm, type_file, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, value_mask, key_gz, path_output, use_vertical_layers, vertical_layers, filter_parcels_height, filter_vertical_layers, limit_domain)
 
@@ -818,6 +902,147 @@ specifically in the *trova.py* script.
    **Returns**
 
    - *tuple*: A tuple containing the processed data and additional information.
+
+
+.. function:: _vector_wvrt(lista_partposi, file_mask, name_mascara, name_variable_lon, name_variable_lat, lat_f, lon_f, rank, size, comm, type_file, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, value_mask, key_gz, path_output, use_vertical_layers, vertical_layers, filter_parcels_height, filter_vertical_layers, limit_domain, dates, dtime, totaltime, folder)
+
+    Processes vector water vapor residence time (WVRT) data.
+
+    This function processes vector water vapor residence time data, filters the data based on specified criteria, and returns the results.
+
+    **Parameters**
+
+    - **lista_partposi** (*list*): List of file paths to read.
+   
+    - **file_mask** (*str*): Path to the mask file.
+   
+    - **name_mascara** (*str*): Name of the mask variable.
+   
+    - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
+   
+    - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
+   
+    - **lat_f** (*numpy.ndarray*): Array of latitude values.
+   
+    - **lon_f** (*numpy.ndarray*): Array of longitude values.
+   
+    - **rank** (*int*): Rank of the current MPI process.
+   
+    - **size** (*int*): Total number of MPI processes.
+   
+    - **comm** (*MPI.Comm*): MPI communicator.
+   
+    - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+   
+    - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
+   
+    - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
+   
+    - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
+   
+    - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
+   
+    - **model** (*str*): Model type (e.g., "FLEXPART").
+   
+    - **method** (*int*): Method used for processing.
+   
+    - **threshold** (*float*): Threshold value for filtering.
+   
+    - **filter_value** (*int*): Value used for filtering.
+   
+    - **value_mask** (*int*): Value to search for in the mask array.
+   
+    - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
+   
+    - **path_output** (*str*): Path to save the output files.
+   
+    - **use_vertical_layers** (*bool*): Whether to use vertical layers.
+   
+    - **vertical_layers** (*list*): List of vertical layers.
+   
+    - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
+   
+    - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
+   
+    - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
+   
+    - **dates** (*list*): List of dates for the simulation.
+   
+    - **dtime** (*int*): Time step interval in minutes.
+   
+    - **totaltime** (*int*): Total time in minutes.
+   
+    - **folder** (*str*): Folder name to save the output file within the output directory.
+
+    **Returns**
+
+    - *tuple*: A tuple containing the processed data and additional information.
+
+.. function:: _only_partposit_particles(lista_partposi, file_mask, name_mascara, name_variable_lon, name_variable_lat, lat_f, lon_f, rank, size, comm, type_file, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, value_mask, key_gz, path_output, use_vertical_layers, vertical_layers, filter_parcels_height, filter_vertical_layers, limit_domain)
+
+    Processes only particle positions data.
+
+    This function processes only particle positions data, filters the data based on specified criteria, and returns the results.
+
+    **Parameters**
+
+    - **lista_partposi** (*list*): List of file paths to read.
+    
+    - **file_mask** (*str*): Path to the mask file.
+    
+    - **name_mascara** (*str*): Name of the mask variable.
+    
+    - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
+    
+    - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
+    
+    - **lat_f** (*numpy.ndarray*): Array of latitude values.
+    
+    - **lon_f** (*numpy.ndarray*): Array of longitude values.
+    
+    - **rank** (*int*): Rank of the current MPI process.
+    
+    - **size** (*int*): Total number of MPI processes.
+    
+    - **comm** (*MPI.Comm*): MPI communicator.
+    
+    - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+    
+    - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
+    
+    - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
+    
+    - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
+    
+    - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
+    
+    - **model** (*str*): Model type (e.g., "FLEXPART").
+    
+    - **method** (*int*): Method used for processing.
+    
+    - **threshold** (*float*): Threshold value for filtering.
+    
+    - **filter_value** (*int*): Value used for filtering.
+    
+    - **value_mask** (*int*): Value to search for in the mask array.
+    
+    - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
+    
+    - **path_output** (*str*): Path to save the output files.
+    
+    - **use_vertical_layers** (*bool*): Whether to use vertical layers.
+    
+    - **vertical_layers** (*list*): List of vertical layers.
+    
+    - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
+    
+    - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
+    
+    - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
+
+    **Returns**
+
+    - *tuple*: A tuple containing the processed data and additional information.
 
 .. function:: time_calc_day(init_time, day_diff)
 
@@ -883,37 +1108,35 @@ specifically in the *trova.py* script.
 
    - **message** (*str*): Explanation of the error.
 
-.. function:: to_check_params(paso, type_file, numPdx, numPdY, method, resolution, cant_plazo, file_mask)
+.. function:: to_check_params(paso, type_file, numPdX, numPdY, method, resolution, file_mask)
 
-   Checks the validity of input parameters.
+    Checks the validity of input parameters.
 
-   This function checks if the input parameters are within the expected range and raises an exception if they are not.
+    This function checks if the input parameters are within the expected range and raises an exception if they are not.
 
-   **Parameters**
+    **Parameters**
 
-   - **paso** (*int*): Step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    - **paso** (*int*): Step value indicating the direction of the simulation (-1 for backward, 1 for forward, -2 for WVRT, -3 for saving variables for particles in the target region).
+    
+    - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+    
+    - **numPdX** (*int*): Number of grid points in the X direction.
+    
+    - **numPdY** (*int*): Number of grid points in the Y direction.
+    
+    - **method** (*int*): Method used for processing (1 for Stohl and James, 2 for Sodemann).
+    
+    - **resolution** (*float*): The resolution of the grid cells.
+    
+    - **file_mask** (*str*): Path to the mask file.
 
-   - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+    **Returns**
 
-   - **numPdx** (*int*): Number of grid points in the X direction.
+    - *None*
 
-   - **numPdY** (*int*): Number of grid points in the Y direction.
+    **Raises**
 
-   - **method** (*int*): Method used for processing (1 for Stohl and James, 2 for Sodemann).
-
-   - **resolution** (*float*): The resolution of the grid cells.
-
-   - **cant_plazo** (*int*): Time step in minutes.
-
-   - **file_mask** (*str*): Path to the mask file.
-
-   **Returns**
-
-   - *None*
-
-   **Raises**
-
-   - *InputNotInRangeError*: If any input parameter is not within the expected range.
+    - *InputNotInRangeError*: If any input parameter is not within the expected range.
 
 .. function:: function_proof(lat, lon)
 
@@ -949,6 +1172,36 @@ specifically in the *trova.py* script.
 
    - *None*
 
+
+.. function:: is_binary(file_path)
+
+    Checks if a file is binary.
+
+    This function checks if the specified file is a binary file by reading its content and analyzing the byte patterns.
+
+    **Parameters**
+
+    - **file_path** (*str*): The path to the file to check.
+
+    **Returns**
+
+    - *bool*: True if the file is binary, False otherwise.
+
+.. function:: verify_binary_files(file_list)
+
+    Verifies a list of files to check if they are all binary.
+
+    This function takes a list of file paths and checks if each file is a binary file. It returns a 
+    list of boolean values indicating the result for each file.
+
+    **Parameters**
+
+    - **file_list** (*list*): A list of file paths to check.
+
+    **Returns**
+
+    - *list*: A list of boolean values where each value corresponds to whether the respective file in the input list is binary.
+
 .. function:: TROVA_LOGO()
 
    Prints the TROVA logo.
@@ -958,121 +1211,126 @@ specifically in the *trova.py* script.
    **Returns**
 
    - *None*
+.. function:: main_process(path, paso, comm, size, rank, resolution, numPdX, numPdY, dtime, totaltime, year, month, day, hour, minn, time, path_output, file_mask, name_mascara, name_variable_lon, name_variable_lat, x_lower_left, y_lower_left, type_file, masa, numP, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, output_txt, output_npy, output_nc, value_mask, key_gz, save_position_part, use_vertical_layers, vertical_layers, save_position_dqdt, filter_parcels_height, filter_vertical_layers, plotting_parcels_t0, plotting_parcels_tracks_on_map, plotting_3Dparcels_tracks, maps_limits, noleap, limit_domain, method_wvrt, plotting_moisture_sink_source, limit_plot)
 
-.. function:: main_process(path, paso, comm, size, rank, resolution, numPdX, numPdY, dtime, totaltime, year, month, day, hour, minn, time, path_output, file_mask, name_mascara, name_variable_lon, name_variable_lat, x_lower_left, y_lower_left, type_file, masa, numP, x_left_lower_corner, y_left_lower_corner, x_right_upper_corner, y_right_upper_corner, model, method, threshold, filter_value, output_txt, output_npy, output_nc, value_mask, key_gz, save_position_part, use_vertical_layers, vertical_layers, save_position_dqdt, filter_parcels_height, filter_vertical_layers, plotting_parcels_t0, plotting_parcels_tracks_on_map, plotting_3Dparcels_tracks, maps_limits, noleap, limit_domain)
+    Main processing function for TROVA.
 
-   Main processing function for TROVA.
+    This function performs the main processing tasks for TROVA, including reading input files, processing data,
+    and generating output files and plots.
 
-   This function performs the main processing tasks for TROVA, including reading input files, processing data,
-   and generating output files and plots.
+    **Parameters**
 
-   **Parameters**
+    - **path** (*str*): Path to the input data.
+    
+    - **paso** (*int*): Step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    
+    - **comm** (*MPI.Comm*): MPI communicator.
+    
+    - **size** (*int*): Total number of MPI processes.
+    
+    - **rank** (*int*): Rank of the current MPI process.
+    
+    - **resolution** (*float*): The resolution of the grid cells.
+    
+    - **numPdX** (*int*): Number of grid points in the X direction.
+    
+    - **numPdY** (*int*): Number of grid points in the Y direction.
+    
+    - **dtime** (*int*): Time step in minutes.
+    
+    - **totaltime** (*int*): Total simulation time in minutes.
+    
+    - **year** (*str*): Initial year of the simulation.
+    
+    - **month** (*str*): Initial month of the simulation.
+    
+    - **day** (*str*): Initial day of the simulation.
+    
+    - **hour** (*str*): Initial hour of the simulation.
+    
+    - **minn** (*str*): Initial minute of the simulation.
+    
+    - **time** (*float*): Start time of the simulation.
+    
+    - **path_output** (*str*): Path to save the output files.
+    
+    - **file_mask** (*str*): Path to the mask file.
+    
+    - **name_mascara** (*str*): Name of the mask variable.
+    
+    - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
+    
+    - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
+    
+    - **x_lower_left** (*float*): X-coordinate of the lower left corner of the domain.
+    
+    - **y_lower_left** (*float*): Y-coordinate of the lower left corner of the domain.
+    
+    - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
+    
+    - **masa** (*float*): Mass of the parcels.
+    
+    - **numP** (*int*): Number of parcels.
+    
+    - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
+    
+    - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
+    
+    - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
+    
+    - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
+    
+    - **model** (*str*): Model type (e.g., "FLEXPART").
+    
+    - **method** (*int*): Method used for processing.
+    
+    - **threshold** (*float*): Threshold value for filtering.
+    
+    - **filter_value** (*int*): Value used for filtering.
+    
+    - **output_txt** (*int*): Whether to output results in TXT format (1 for yes, 0 for no).
+    
+    - **output_npy** (*int*): Whether to output results in NPY format (1 for yes, 0 for no).
+    
+    - **output_nc** (*int*): Whether to output results in NetCDF format (1 for yes, 0 for no).
+    
+    - **value_mask** (*int*): Value to search for in the mask array.
+    
+    - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
+    
+    - **save_position_part** (*bool*): Whether to save parcel positions at each time step.
+    
+    - **use_vertical_layers** (*bool*): Whether to use vertical layers.
+    
+    - **vertical_layers** (*list*): List of vertical layers.
+    
+    - **save_position_dqdt** (*bool*): Whether to save dq/dt at each time step.
+    
+    - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
+    
+    - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
+    
+    - **plotting_parcels_t0** (*bool*): Whether to plot identified parcels within the target region at time t0.
+    
+    - **plotting_parcels_tracks_on_map** (*bool*): Whether to plot identified parcels' trajectories on a map.
+    
+    - **plotting_3Dparcels_tracks** (*bool*): Whether to plot 3D parcels' trajectories.
+    
+    - **maps_limits** (*list*): List containing the map limits [latmin, lonmin, latmax, lonmax, center, dlat, dlon].
+    
+    - **noleap** (*bool*): Whether to exclude leap years.
+    
+    - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
+    
+    - **method_wvrt** (*int*): Method used for calculating water vapor residence time.
+    
+    - **plotting_moisture_sink_source** (*bool*): Whether to plot moisture sink and source patterns.
+    
+    - **limit_plot** (*list*): List containing the plot limits [latmin, lonmin, latmax, lonmax].
 
-   - **path** (*str*): Path to the input data.
+    **Returns**
 
-   - **paso** (*int*): Step value indicating the direction of the simulation (-1 for backward, 1 for forward).
-
-   - **comm** (*MPI.Comm*): MPI communicator.
-
-   - **size** (*int*): Total number of MPI processes.
-
-   - **rank** (*int*): Rank of the current MPI process.
-
-   - **resolution** (*float*): The resolution of the grid cells.
-
-   - **numPdX** (*int*): Number of grid points in the X direction.
-
-   - **numPdY** (*int*): Number of grid points in the Y direction.
-
-   - **dtime** (*int*): Time step in minutes.
-
-   - **totaltime** (*int*): Total simulation time in minutes.
-
-   - **year** (*str*): Initial year of the simulation.
-
-   - **month** (*str*): Initial month of the simulation.
-
-   - **day** (*str*): Initial day of the simulation.
-
-   - **hour** (*str*): Initial hour of the simulation.
-
-   - **minn** (*str*): Initial minute of the simulation.
-
-   - **time** (*float*): Start time of the simulation.
-
-   - **path_output** (*str*): Path to save the output files.
-
-   - **file_mask** (*str*): Path to the mask file.
-
-   - **name_mascara** (*str*): Name of the mask variable.
-
-   - **name_variable_lon** (*str*): Name of the longitude variable in the mask file.
-
-   - **name_variable_lat** (*str*): Name of the latitude variable in the mask file.
-
-   - **x_lower_left** (*float*): X-coordinate of the lower left corner of the domain.
-
-   - **y_lower_left** (*float*): Y-coordinate of the lower left corner of the domain.
-
-   - **type_file** (*int*): Type of file (1 for FLEXPART-WRF, 2 for FLEXPART-ERAI and FLEXPART-ERA5).
-
-   - **masa** (*float*): Mass of the parcels.
-
-   - **numP** (*int*): Number of parcels.
-
-   - **x_left_lower_corner** (*float*): X-coordinate of the lower left corner of the domain.
-
-   - **y_left_lower_corner** (*float*): Y-coordinate of the lower left corner of the domain.
-
-   - **x_right_upper_corner** (*float*): X-coordinate of the upper right corner of the domain.
-
-   - **y_right_upper_corner** (*float*): Y-coordinate of the upper right corner of the domain.
-
-   - **model** (*str*): Model type (e.g., "FLEXPART").
-
-   - **method** (*int*): Method used for processing.
-
-   - **threshold** (*float*): Threshold value for filtering.
-
-   - **filter_value** (*int*): Value used for filtering.
-
-   - **output_txt** (*int*): Whether to output results in TXT format (1 for yes, 0 for no).
-
-   - **output_npy** (*int*): Whether to output results in NPY format (1 for yes, 0 for no).
-
-   - **output_nc** (*int*): Whether to output results in NetCDF format (1 for yes, 0 for no).
-
-   - **value_mask** (*int*): Value to search for in the mask array.
-
-   - **key_gz** (*int*): Whether to use gzip compression (1 for yes, 0 for no).
-
-   - **save_position_part** (*bool*): Whether to save parcel positions at each time step.
-
-   - **use_vertical_layers** (*bool*): Whether to use vertical layers.
-
-   - **vertical_layers** (*list*): List of vertical layers.
-
-   - **save_position_dqdt** (*bool*): Whether to save dq/dt at each time step.
-
-   - **filter_parcels_height** (*bool*): Whether to filter parcels by height.
-
-   - **filter_vertical_layers** (*list*): List of vertical layers for filtering.
-
-   - **plotting_parcels_t0** (*bool*): Whether to plot identified parcels within the target region at time t0.
-
-   - **plotting_parcels_tracks_on_map** (*bool*): Whether to plot identified parcels' trajectories on a map.
-
-   - **plotting_3Dparcels_tracks** (*bool*): Whether to plot 3D parcels' trajectories.
-
-   - **maps_limits** (*list*): List containing the map limits [latmin, lonmin, latmax, lonmax, center, dlat, dlon].
-
-   - **noleap** (*bool*): Whether to exclude leap years.
-
-   - **limit_domain** (*int*): Whether to limit the domain (1 for yes, 0 for no).
-
-   **Returns**
-
-   - *None*
+    - *None*
 
 .. function:: TROVA_main(input_file)
 
@@ -1091,7 +1349,305 @@ specifically in the *trova.py* script.
 TROVA module 2
 --------------
 
-.. module:: tensor_operations
+.. module:: functions
 
+   :platform: Linux
+   :synopsis: TROVA module 2
+   :moduleauthor: José Carlos Fernández Alvarez <jcfernandez@cesga.es>
+   :version: 1.0
+   :deprecated: No
+   :private: No
+   
 Below is the description of the functions within the TROVA complementary module, 
-specifically in the *tensor_operations.f90* script.
+specifically in the *functions.f90* script.
+
+
+.. function:: K_dq(result, tensor, lon, lat, numPdY, numPdX, nlen, npart)
+
+    Computes the sum of tensor values within specified longitude and latitude bounds.
+
+    This subroutine iterates over the tensor and sums the values in the third dimension
+    for each grid cell defined by the longitude and latitude arrays.
+
+    **Parameters**
+
+    - **tensor** (*real(8), intent(in)*): The input tensor containing the data to be summed.
+
+    - **lon** (*real(8), intent(in)*): The array of longitude values defining the grid cells.
+
+    - **lat** (*real(8), intent(in)*): The array of latitude values defining the grid cells.
+
+    - **numPdY** (*integer, intent(in)*): The number of grid points in the Y direction.
+
+    - **numPdX** (*integer, intent(in)*): The number of grid points in the X direction.
+
+    - **nlen** (*integer, intent(in)*): The length of the first dimension of the tensor.
+
+    - **npart** (*integer, intent(in)*): The length of the second dimension of the tensor.
+
+    **Returns**
+
+    - **result** (*real(8), intent(out)*): The output array containing the summed values.
+
+
+.. function:: K_dq_layers(result, tensor, z0, z1, lon, lat, numPdY, numPdX, nlen, npart)
+
+    Computes the sum of tensor values within specified longitude, latitude, and vertical layer bounds.
+
+    This subroutine iterates over the tensor and sums the values in the third dimension
+    for each grid cell defined by the longitude and latitude arrays, and within the specified vertical layer bounds.
+
+    **Parameters**
+
+    - **tensor** (*real(8), intent(in)*): The input tensor containing the data to be summed.
+    
+    - **z0** (*real(8), intent(in)*): The lower bound of the vertical layer.
+    
+    - **z1** (*real(8), intent(in)*): The upper bound of the vertical layer.
+    
+    - **lon** (*real(8), intent(in)*): The array of longitude values defining the grid cells.
+    
+    - **lat** (*real(8), intent(in)*): The array of latitude values defining the grid cells.
+    
+    - **numPdY** (*integer, intent(in)*): The number of grid points in the Y direction.
+    
+    - **numPdX** (*integer, intent(in)*): The number of grid points in the X direction.
+    
+    - **nlen** (*integer, intent(in)*): The length of the first dimension of the tensor.
+    
+    - **npart** (*integer, intent(in)*): The length of the second dimension of the tensor.
+
+    **Returns**
+
+    - **result** (*real(8), intent(out)*): The output array containing the summed values.
+
+.. function:: K_dq_por(result, tensor, lon, lat, numPdY, numPdX, nlen, npart)
+
+    Computes the average of tensor values within specified longitude and latitude bounds.
+
+    This subroutine iterates over the tensor and computes the average of the values in the third dimension
+    for each grid cell defined by the longitude and latitude arrays.
+
+    **Parameters**
+
+    - **tensor** (*real(8), intent(in)*): The input tensor containing the data to be averaged.
+    
+    - **lon** (*real(8), intent(in)*): The array of longitude values defining the grid cells.
+    
+    - **lat** (*real(8), intent(in)*): The array of latitude values defining the grid cells.
+    
+    - **numPdY** (*integer, intent(in)*): The number of grid points in the Y direction.
+    
+    - **numPdX** (*integer, intent(in)*): The number of grid points in the X direction.
+    
+    - **nlen** (*integer, intent(in)*): The length of the first dimension of the tensor.
+    
+    - **npart** (*integer, intent(in)*): The length of the second dimension of the tensor.
+
+    **Returns**
+
+    - **result** (*real(8), intent(out)*): The output array containing the averaged values.
+
+.. function:: read_binary_file(output_, filename, nparts, x_l, y_l, x_r, y_r, limit_domian)
+
+    Reads a binary file and extracts relevant data within specified domain limits.
+
+    This subroutine reads a binary file and extracts relevant data, storing it in the output array.
+    If domain limits are specified, only data within those limits is included in the output.
+
+    **Parameters**
+
+    - **filename** (*character(500), intent(in)*): The name of the binary file to read.
+    
+    - **nparts** (*integer, intent(in)*): The number of parts in the binary file.
+    
+    - **x_l** (*real, intent(in)*): The lower X-coordinate of the domain.
+    
+    - **y_l** (*real, intent(in)*): The lower Y-coordinate of the domain.
+    
+    - **x_r** (*real, intent(in)*): The upper X-coordinate of the domain.
+    
+    - **y_r** (*real, intent(in)*): The upper Y-coordinate of the domain.
+    
+    - **limit_domian** (*integer, intent(in)*): Whether to limit the domain (1 for yes, 0 for no).
+
+    **Returns**
+
+    - **output_** (*real(8), intent(out)*): The output array containing the extracted data.
+
+.. function:: len_file(bytes, filename)
+
+    Determines the size of a file in bytes.
+
+    This subroutine determines the size of a specified file in bytes and returns the size.
+
+    **Parameters**
+
+    - **filename** (*character(500), intent(in)*): The name of the file to check.
+
+    **Returns**
+
+   - **bytes** (*integer, intent(out)*): The size of the file in bytes.
+
+.. function:: K_dq_So(result, matrix, matrix_ind, threshold, npart, ntime)
+
+    Computes the sum of tensor values within specified thresholds.
+
+    This subroutine iterates over the tensor and computes the sum of the values in the third dimension
+    for each grid cell defined by the matrix and matrix_ind arrays, applying the specified threshold.
+
+    **Parameters**
+   
+    - **matrix** (*real(8), intent(in)*): The input tensor containing the data to be summed.
+    
+    - **matrix_ind** (*real(8), intent(in)*): The input tensor containing the indicator values.
+    
+    - **threshold** (*real*): The threshold value for filtering.
+    
+    - **npart** (*integer*): The number of parts in the tensor.
+    
+    - **ntime** (*integer*): The number of time steps in the tensor.
+
+    **Returns**
+
+   - **result** (*real(8), intent(out)*): The output array containing the summed values.
+
+.. function:: filter_part(output, count_part, matrix, matrix_ref, paso, threshold, numP)
+
+    Filters particles based on a specified threshold.
+
+    This subroutine filters particles based on a specified threshold and step value (paso).
+    It updates the output array with the filtered particles and counts the number of filtered particles.
+
+    **Parameters**
+
+    - **matrix** (*real, intent(in)*): The input matrix containing particle data.
+    
+    - **matrix_ref** (*real, intent(in)*): The reference matrix for filtering.
+    
+    - **paso** (*integer, intent(in)*): The step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    
+    - **threshold** (*real, intent(in)*): The threshold value for filtering.
+    
+    - **numP** (*integer, intent(in)*): The number of particles.
+
+    **Returns**
+
+    - **output** (*real, intent(out)*): The output array containing the filtered particles.
+    
+    - **count_part** (*integer, intent(out)*): The count of filtered particles.
+
+.. function:: filter_part2(output, count_part, matrix, matrix_ref, paso, threshold, numP)
+
+    Filters particles based on a specified threshold.
+
+    This subroutine filters particles based on a specified threshold and step value (paso).
+    It updates the output array with the filtered particles and counts the number of filtered particles.
+
+    **Parameters**
+
+    - **matrix** (*real, intent(in)*): The input matrix containing particle data.
+    
+    - **matrix_ref** (*real, intent(in)*): The reference matrix for filtering.
+    
+    - **paso** (*integer, intent(in)*): The step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    
+    - **threshold** (*real, intent(in)*): The threshold value for filtering.
+    
+    - **numP** (*integer, intent(in)*): The number of particles.
+
+    **Returns**
+
+    - **output** (*real, intent(out)*): The output array containing the filtered particles.
+    
+    - **count_part** (*integer, intent(out)*): The count of filtered particles.
+
+.. function:: filter_part_by_height(output, count_part, matrix, matrix_ref, paso, lowerlayer, upperlayer, numP)
+
+    Filters particles based on height within specified layers.
+
+    This subroutine filters particles based on a specified height range (lowerlayer to upperlayer) and step value (paso).
+    It updates the output array with the filtered particles and counts the number of filtered particles.
+
+    **Parameters**
+
+    - **matrix** (*real, intent(in)*): The input matrix containing particle data.
+    
+    - **matrix_ref** (*real, intent(in)*): The reference matrix for filtering.
+    
+    - **paso** (*integer, intent(in)*): The step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    
+    - **lowerlayer** (*real, intent(in)*): The lower bound of the height range for filtering.
+    
+    - **upperlayer** (*real, intent(in)*): The upper bound of the height range for filtering.
+    
+    - **numP** (*integer, intent(in)*): The number of particles.
+
+    **Returns**
+
+    - **output** (*real, intent(out)*): The output array containing the filtered particles.
+    
+    - **count_part** (*integer, intent(out)*): The count of filtered particles.
+
+.. function:: search_row(output, matrix, lista, len_lista, numP)
+
+    Searches for rows in the matrix that match the values in the list.
+
+    This subroutine searches for rows in the matrix that match the values in the list.
+    It updates the output array with the matching rows.
+
+    **Parameters**
+
+    - **matrix** (*real, intent(in)*): The input matrix containing data.
+    
+    - **lista** (*real, intent(in)*): The list of values to search for.
+    
+    - **len_lista** (*integer, intent(in)*): The length of the list.
+    
+    - **numP** (*integer, intent(in)*): The number of rows in the matrix.
+
+    **Returns**
+
+    - **output** (*real, intent(out)*): The output array containing the matching rows.
+
+.. function:: determined_id(vector, value_mascara, value_mask, len_value_mascara)
+
+    Determines the indices of elements in value_mascara that match value_mask.
+
+    This subroutine searches through the value_mascara array and sets the corresponding
+    indices in the vector array where the elements match the value_mask.
+
+    **Parameters**
+
+    - **value_mascara** (*integer, intent(in)*): The input array to search through.
+    
+    - **value_mask** (*integer, intent(in)*): The value to match in the value_mascara array.
+    
+    - **len_value_mascara** (*integer, intent(in)*): The length of the value_mascara array.
+
+    **Returns**
+
+     - **vector** (*integer, intent(out)*): The output array containing the indices of matching elements.
+
+.. function:: Kdif(output, matrix1, matrix2, paso, dx, dy)
+
+    Computes the difference between two matrices based on a specified step value (paso).
+
+    This subroutine computes the difference between two matrices (matrix1 and matrix2) based on a specified step value (paso).
+    It updates the output array with the computed differences.
+
+    **Parameters**
+
+    - **matrix1** (*real(8), intent(in)*): The first input matrix.
+    
+    - **matrix2** (*real(8), intent(in)*): The second input matrix.
+    
+    - **paso** (*real, intent(in)*): The step value indicating the direction of the simulation (-1 for backward, 1 for forward).
+    
+    - **dx** (*integer, intent(in)*): The number of rows in the matrices.
+    
+    - **dy** (*integer, intent(in)*): The number of columns in the matrices.
+
+    **Returns**
+
+    - **output** (*real(8), intent(out)*): The output array containing the computed differences.

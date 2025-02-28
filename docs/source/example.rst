@@ -3,11 +3,12 @@ Illustrative examples for a specific day
 ===============================================================
 Using the data corresponding to the outputs of FLEXPART-WRF forced with ERA5 
 and the TROVA configuration file provided in the following repository 
-https://zenodo.org/records/14886887, the results shown below for October 17, 
-2014, can be reproduced. For this analysis, the Canary Islands are considered 
-as the target region (magenta contour on the graphics shown). The Python codes
+https://zenodo.org/records/14886887 and https://zenodo.org/records/14939160,
+the results shown below for October 17, 2014, can be reproduced. For this 
+analysis, the Canary Islands are considered as the target region (magenta 
+contour on the graphics shown). The Python codes
 to process these results and create the corresponding maps can be found in the 
-same repository.
+repository https://zenodo.org/records/14886887.
 
 Below we show a detailed analysis of the results obtained when we ran TROVA
 using the methodology of Sodemann et al (2008). This analysis is performed 
@@ -74,7 +75,7 @@ Specific humidity changes every 6 h for the particles
       plt.close()
 
 .. image:: _static/dq_dt_part_20141017.jpg
-   :alt: Moisture Source
+   :alt: dq_dt_part
    :align: center
    :width: 400px
 
@@ -130,13 +131,13 @@ The colors 'blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'purple
       plt.close()
 
 .. image:: _static/point_day_part_20141017.jpg
-   :alt: Moisture Source
+   :alt: point_day_part
    :align: center
    :width: 400px
 
 
 The trajectories of the particles and the height in colors every 6 h
--------------------------------------------------------------------------
+--------------------------------------------------------------------
 
 .. code-block:: python
 
@@ -191,7 +192,7 @@ The trajectories of the particles and the height in colors every 6 h
       plt.close()
 
 .. image:: _static/track_part_20141017.jpg
-   :alt: Moisture Source
+   :alt: Track particles
    :align: center
    :width: 400px
 
@@ -255,6 +256,29 @@ Moisture source pattern (E-P > 0)
    :width: 400px
 
 
+Water vapor residence time in the atmosphere
+-----------------------------------------------
 
+.. code-block:: python
 
+   def plot_residence_time(residence_time_particles, residence_time_mean, output_dir, date, rank):
+            
+      import matplotlib.pyplot as plt
+      plt.figure(figsize=(10, 6))
+      plt.plot(residence_time_particles, 'o', markersize=2)
+      plt.axhline(y=residence_time_mean, color='r', linestyle='--', label=f'Mean: {residence_time_mean:.2f} days')
+      plt.xlabel('Particle number')
+      plt.ylabel('Residence time (days)')
+      plt.legend()
+      plot_file = f"{output_dir}WVRT_plot_{date}.png"
+      plt.savefig(plot_file, bbox_inches='tight', dpi=300)
+      plt.close()
+      if rank == 0:
+         print("--------------------------------------------------------------------")
+         print(f"Plot for the residence time for all particles saved to {plot_file}")
+         print("--------------------------------------------------------------------")
 
+.. image:: _static/WVRT_plot_20141017000000.png
+   :alt: Water vapor residence time
+   :align: center
+   :width: 400px
