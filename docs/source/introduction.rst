@@ -54,7 +54,7 @@ implementation using the MPI library to reduce TROVA's processing time.**
 3- **This new version includes the analysis of moisture sources and sinks by vertical layers.**
 
 4- **This version allows the calculation of the residence time of water vapor in the 
-atmosphere for particles in a target region.**
+atmosphere for particles in a target region applying the methodology of Läderach and Sodemann (2016).**
 
 5- **This version has functions that allow the representation of moisture source and sink patterns and 
 the representation in a 2D graph of the residence time values of water vapor in the atmosphere 
