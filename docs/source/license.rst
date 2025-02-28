@@ -1,7 +1,7 @@
 License
 ============ 
 
-Copyright 2023 Fernández-Alvarez et al. (2022)
+Copyright 2025 Fernández-Alvarez et al. (2022)
 
 This software is published under the GPLv3 license. This means:
 
